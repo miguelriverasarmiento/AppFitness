@@ -1,0 +1,30 @@
+<%= form_with model: @clase do |f| %>
+    <div>
+        <%= f.label :nombre %>
+        <%= f.text_field :nombre %>
+        <% @clase.errors.full_messages_for(:nombre).each do |message| %>
+        <div><%= message %></div>
+        <% end %>
+    </div>
+
+    <div>
+        <%= f.label :fecha %>
+        <%= f.datetime_picker :fecha %>
+        <% @clase.errors.full_messages_for(:fecha).each do |message| %>
+        <div><%= message %></div>
+        <% end %>
+    </div>
+
+    <div>
+        <%= f.label :cupos %>
+        <%= f.number_field :cupos %>
+        <% @clase.errors.full_messages_for(:cupos).each do |message| %>
+        <div><%= message %></div>
+        <% end %>
+    </div>
+    
+    <div>
+        <%= f.submit %>
+    </div>
+
+<% end %>

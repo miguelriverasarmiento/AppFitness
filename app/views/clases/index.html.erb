@@ -1,0 +1,26 @@
+<h2>Clases disponibles</h2>
+
+<div>
+
+<table>
+  <tr>
+    <th>Clase</th>
+    <th>Fecha</th>
+    <th>Cupos</th>
+    <th></th>
+  </tr>
+ 
+  <% @clases.each do |clas| %>
+    <tr>
+      <td><%= clas.nombre %></td>
+      <td><%= clas.fecha %></td>
+      <td><%= clas.cupos %></td>
+      <td><%= link_to 'Reservar', clase_path(clas) %></td>
+      <td><%= link_to 'Eliminar', clase_path(clas), method: :delete, data: { confirm: "Eliminar?" } %></td>
+    </tr>
+  <% end %>
+</table></br>
+
+<%= link_to 'Nueva clase', new_clase_path %>
+</div>
+
