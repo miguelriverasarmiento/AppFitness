@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   
   resources :clases
   resources :reservas
+
+  get '/clases', to: 'clases#index'
+  get '/clases/:id', to: 'clases#show'
 end
