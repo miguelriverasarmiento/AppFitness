@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_27_015644) do
+ActiveRecord::Schema.define(version: 2021_11_09_162057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,11 +24,20 @@ ActiveRecord::Schema.define(version: 2021_08_27_015644) do
   end
 
   create_table "reservas", force: :cascade do |t|
-    t.integer "idUsuario"
-    t.integer "idClase"
+    t.integer "usuario_id"
+    t.integer "clase_id"
     t.datetime "fecha"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.text "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -41,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_08_27_015644) do
     t.integer "cedula"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin"
     t.index ["email"], name: "index_usuarios_on_email", unique: true
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
