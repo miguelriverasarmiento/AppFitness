@@ -1,0 +1,40 @@
+<h2>Todas las reservas</h2>
+
+<div class="booking">
+<table>
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Clase</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+
+<% @reservas.each do |reser| %>
+    <% if reser.usuario_id == current_usuario.id %>
+    <tr>
+        <td><%= reser.usuario_id %></td>
+        <td><%= reser.clase_id %></td>
+        <td><%= reser.fecha %></td>
+        <td><%= link_to 'Ver reserva', reserva_path(reser) %></td>
+        <td><%= link_to 'Eliminar', reser, method: :delete, data: { confirm: "Eliminar?" } %></td>
+    </tr>
+    <% elsif @reservas.exists?(:usuario_id => current_usuario.id).blank? %>
+        <script>
+        $('.booking').html("<div id='message'></div>")
+        $('#message').html("<h4>No hay reservas</h4>")
+        .hide()
+        .fadeIn(1500, function(){
+            $('#message');
+        })
+        </script>
+        <% else %>
+
+    <% end %>
+<% end %>
+</table>
+</div>
+
+<br />
+
+<%= link_to 'Volver a clases', clases_path %>

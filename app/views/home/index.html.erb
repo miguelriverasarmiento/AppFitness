@@ -1,10 +1,13 @@
 <h1>App Fitness</h1>
 
 <h3>Bienvenido: <%= @usuario.nombre %></h3>
-<h4>Clases reservadas:</h4>
 
+<div>
 
 <h4><%= link_to "Ver todas las clases", clases_path %></h4>
+<h4><%= link_to "Ver todas las reservas", reservas_path %></h4>
+
+</div>
 <br>
 <a>
     <%= link_to destroy_usuario_session_path, method: :delete do %>
